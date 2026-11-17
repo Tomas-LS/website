@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Linkedin, Mail, MapPin } from "lucide-react";
+import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { useState, type FormEvent, type ReactNode } from "react";
 
 import { PageHeader } from "@/components/site/PageHeader";
@@ -63,6 +63,12 @@ function ContactPage() {
           <div className="space-y-4">
             {[
               { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
+              {
+                icon: Phone,
+                label: "Phone",
+                value: site.phone || "Not configured",
+                href: site.phone ? `tel:${site.phone.replace(/[^\d+]/g, "")}` : undefined,
+              },
               { icon: Linkedin, label: "LinkedIn", value: site.linkedinLabel, href: site.linkedin },
               { icon: MapPin, label: "Based in", value: site.location },
             ].map((c) => {

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail, Phone } from "lucide-react";
 
 import { navItems, site } from "@/content/site";
 
@@ -36,16 +36,28 @@ export function SiteFooter() {
                 <Mail className="size-4" aria-hidden /> {site.email}
               </a>
             </li>
-            <li>
-              <a
-                href={site.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:text-accent"
-              >
-                <Linkedin className="size-4" aria-hidden /> LinkedIn
-              </a>
-            </li>
+            {site.phone && (
+              <li>
+                <a
+                  href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}
+                  className="inline-flex items-center gap-2 hover:text-accent"
+                >
+                  <Phone className="size-4" aria-hidden /> {site.phone}
+                </a>
+              </li>
+            )}
+            {site.linkedin && (
+              <li>
+                <a
+                  href={site.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 hover:text-accent"
+                >
+                  <Linkedin className="size-4" aria-hidden /> LinkedIn
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
