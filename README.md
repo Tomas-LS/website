@@ -27,6 +27,8 @@ The GitHub Actions workflow in `.github/workflows/deploy-pages.yml` builds and d
 
 Set these repository variables at **Settings → Secrets and variables → Actions → Variables**. They are injected during the Pages build; any value included in a static site is public to site visitors, so do not store secrets here. Missing values use neutral placeholders, and an unset phone or LinkedIn URL is omitted as a contact link.
 
+After changing any variable, redeploy manually from **Actions → Deploy to GitHub Pages → Run workflow**; changing a variable alone does not trigger a build.
+
 | Variable                      | Value                            |
 | ----------------------------- | -------------------------------- |
 | `VITE_PROFILE_NAME`           | Display name                     |
