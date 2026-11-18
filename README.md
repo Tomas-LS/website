@@ -25,22 +25,9 @@ The GitHub Actions workflow in `.github/workflows/deploy-pages.yml` builds and d
 
 ### Profile details
 
-Set these repository variables at **Settings → Secrets and variables → Actions → Variables**. They are injected during the Pages build; any value included in a static site is public to site visitors, so do not store secrets here. Missing values use neutral placeholders, and an unset phone or LinkedIn URL is omitted as a contact link.
+Edit `src/content/profile.json` and replace each sample string with your profile details: name, professional title, specialization, location, email, phone, LinkedIn URL and its display label. Leave tagline and intro out of this file. This file is tracked in the public repository, and the published website is public too, so any details you enter will be visible to anyone—do not put private information here.
 
-After changing any variable, redeploy manually from **Actions → Deploy to GitHub Pages → Run workflow**; changing a variable alone does not trigger a build.
-
-| Variable                      | Value                            |
-| ----------------------------- | -------------------------------- |
-| `VITE_PROFILE_NAME`           | Display name                     |
-| `VITE_PROFILE_TITLE`          | Professional title               |
-| `VITE_PROFILE_SPECIALIZATION` | Specialization                   |
-| `VITE_PROFILE_LOCATION`       | Location                         |
-| `VITE_PROFILE_EMAIL`          | Public contact email             |
-| `VITE_PROFILE_PHONE`          | Optional public phone number     |
-| `VITE_PROFILE_LINKEDIN_URL`   | Optional LinkedIn URL            |
-| `VITE_PROFILE_LINKEDIN_LABEL` | Text shown for the LinkedIn link |
-| `VITE_PROFILE_TAGLINE`        | Short tagline                    |
-| `VITE_PROFILE_INTRO`          | Introductory paragraph           |
+Commit and push the edit to `main` to trigger a new Pages build, or run **Actions → Deploy to GitHub Pages → Run workflow** manually.
 
 ## Project structure
 

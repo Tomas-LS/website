@@ -1,22 +1,19 @@
-const profileValue = (value: string | undefined, fallback: string) => value?.trim() || fallback;
-const optionalProfileValue = (value: string | undefined) => value?.trim() || "";
+import profile from "./profile.json";
 
-const linkedin = optionalProfileValue(import.meta.env.VITE_PROFILE_LINKEDIN_URL);
+const profileValue = (value: string, fallback: string) => value.trim() || fallback;
+const linkedin = profile.linkedinUrl.trim();
 
 export const site = {
-  name: profileValue(import.meta.env.VITE_PROFILE_NAME, "Your Name"),
-  title: profileValue(import.meta.env.VITE_PROFILE_TITLE, "Your professional title"),
-  specialization: profileValue(import.meta.env.VITE_PROFILE_SPECIALIZATION, "Your specialization"),
-  location: profileValue(import.meta.env.VITE_PROFILE_LOCATION, "Location not configured"),
-  email: profileValue(import.meta.env.VITE_PROFILE_EMAIL, "name@example.com"),
-  phone: optionalProfileValue(import.meta.env.VITE_PROFILE_PHONE),
+  name: profileValue(profile.name, "Your Name"),
+  title: profileValue(profile.title, "Your professional title"),
+  specialization: profileValue(profile.specialization, "Your specialization"),
+  location: profileValue(profile.location, "Location not configured"),
+  email: profileValue(profile.email, "name@example.com"),
+  phone: profile.phone.trim(),
   linkedin,
-  linkedinLabel: profileValue(
-    import.meta.env.VITE_PROFILE_LINKEDIN_LABEL,
-    linkedin || "LinkedIn profile not configured",
-  ),
-  tagline: profileValue(import.meta.env.VITE_PROFILE_TAGLINE, "Add your tagline here."),
-  intro: profileValue(import.meta.env.VITE_PROFILE_INTRO, "Add a short introduction here."),
+  linkedinLabel: profileValue(profile.linkedinLabel, linkedin || "LinkedIn profile not configured"),
+  tagline: "Add your tagline here.",
+  intro: "Add a short introduction here.",
 } as const;
 
 export const navItems = [

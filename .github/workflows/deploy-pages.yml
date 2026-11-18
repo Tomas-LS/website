@@ -36,16 +36,6 @@ jobs:
         env:
           STATIC_EXPORT: "1"
           BASE_PATH: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
-          VITE_PROFILE_NAME: ${{ vars.VITE_PROFILE_NAME }}
-          VITE_PROFILE_TITLE: ${{ vars.VITE_PROFILE_TITLE }}
-          VITE_PROFILE_SPECIALIZATION: ${{ vars.VITE_PROFILE_SPECIALIZATION }}
-          VITE_PROFILE_LOCATION: ${{ vars.VITE_PROFILE_LOCATION }}
-          VITE_PROFILE_EMAIL: ${{ vars.VITE_PROFILE_EMAIL }}
-          VITE_PROFILE_PHONE: ${{ vars.VITE_PROFILE_PHONE }}
-          VITE_PROFILE_LINKEDIN_URL: ${{ vars.VITE_PROFILE_LINKEDIN_URL }}
-          VITE_PROFILE_LINKEDIN_LABEL: ${{ vars.VITE_PROFILE_LINKEDIN_LABEL }}
-          VITE_PROFILE_TAGLINE: ${{ vars.VITE_PROFILE_TAGLINE }}
-          VITE_PROFILE_INTRO: ${{ vars.VITE_PROFILE_INTRO }}
 
       # GitHub Pages serves 404.html for unknown URLs. The template's {{BASE}}
       # marker is replaced with the site's sub-path so its links resolve.
