@@ -5,8 +5,8 @@ const linkedin = profile.linkedinUrl.trim();
 
 export const site = {
   name: profileValue(profile.name, "Your Name"),
-  title: profileValue(profile.title, "Your professional title"),
-  specialization: profileValue(profile.specialization, "Your specialization"),
+  title: profileValue(profile.title, "Mechanical Engineer"),
+  specialization: profileValue(profile.specialization, "Assistive Technology & Accessibility Design"),
   location: profileValue(profile.location, "Location not configured"),
   email: profileValue(profile.email, "name@example.com"),
   phone: profile.phone.trim(),

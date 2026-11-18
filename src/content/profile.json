@@ -1,10 +1,10 @@
 {
-  "name": "Jhon - Doe Smith",
-  "title": "Fixer of things",
-  "specialization": "Specialization!",
-  "location": "Replace with your location",
-  "email": "johnpork@gmail.com",
-  "phone": "+00 000 000 2000",
-  "linkedinUrl": "https://www.linkedin.com/in/your-profile",
-  "linkedinLabel": "linkedin.com/in/your-profile"
+    "name":  "Jhon - Doe Smith",
+    "title":  "Mechanical Engineer",
+    "specialization":  "Assistive Technology \u0026 Accessibility Design",
+    "location":  "Replace with your location",
+    "email":  "johnpork@gmail.com",
+    "phone":  "+00 000 000 2000",
+    "linkedinUrl":  "https://www.linkedin.com/in/your-profile",
+    "linkedinLabel":  "linkedin.com/in/your-profile"
 }
