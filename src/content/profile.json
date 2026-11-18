@@ -1,10 +1,10 @@
 {
-  "name": "Replace with your name",
-  "title": "Replace with your professional title",
-  "specialization": "Replace with your specialization",
+  "name": "Jhon Doe Smith",
+  "title": "Fixer of things",
+  "specialization": "Specialization!",
   "location": "Replace with your location",
-  "email": "your.name@example.com",
-  "phone": "+00 000 000 0000",
+  "email": "johnpork@gmail.com",
+  "phone": "+00 000 000 2000",
   "linkedinUrl": "https://www.linkedin.com/in/your-profile",
   "linkedinLabel": "linkedin.com/in/your-profile"
 }
