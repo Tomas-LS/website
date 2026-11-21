@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, Mail, MapPin, Phone, type LucideIcon } from "lucide-react";
 import { useState, type FormEvent, type ReactNode } from "react";
 
 import { PageHeader } from "@/components/site/PageHeader";
@@ -7,18 +7,47 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import contactContent from "@/content/contact.json";
 import { buildMailto, contactSchema } from "@/lib/contact";
 import { site } from "@/content/site";
 
-const description = `Contact ${site.name}, mechanical engineer in assistive technology — email, LinkedIn or contact form.`;
+type ContactDetail = { icon: LucideIcon; label: string; value: string; href?: string };
+
+function getContactDetail(key: string, label: string): ContactDetail {
+  switch (key) {
+    case "email":
+      return { icon: Mail, label, value: site.email, href: `mailto:${site.email}` };
+    case "phone":
+      return site.phone
+        ? {
+            icon: Phone,
+            label,
+            value: site.phone,
+            href: `tel:${site.phone.replace(/[^\d+]/g, "")}`,
+          }
+        : { icon: Phone, label, value: contactContent.notConfigured };
+    case "linkedin":
+      return { icon: Linkedin, label, value: site.linkedinLabel, href: site.linkedin };
+    case "location":
+      return { icon: MapPin, label, value: site.location };
+    default:
+      throw new Error(`Unknown contact detail "${key}".`);
+  }
+}
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: `Contact — ${site.name}` },
-      { name: "description", content: description },
-      { property: "og:title", content: `Contact — ${site.name}` },
-      { property: "og:description", content: description },
+      { title: contactContent.meta.title.replace("{name}", site.name) },
+      {
+        name: "description",
+        content: contactContent.meta.description.replace("{name}", site.name),
+      },
+      { property: "og:title", content: contactContent.meta.title.replace("{name}", site.name) },
+      {
+        property: "og:description",
+        content: contactContent.meta.description.replace("{name}", site.name),
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -54,24 +83,15 @@ function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact"
-        title="Let's build something useful."
-        lead="Whether you're hiring, collaborating on an assistive device or just want to talk engineering — I'd love to hear from you."
+        eyebrow={contactContent.heading.eyebrow}
+        title={contactContent.heading.title}
+        lead={contactContent.heading.lead}
       />
       <section className="bg-surface-2 py-16 md:py-24">
         <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
           <div className="space-y-4">
-            {[
-              { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
-              {
-                icon: Phone,
-                label: "Phone",
-                value: site.phone || "Not configured",
-                href: site.phone ? `tel:${site.phone.replace(/[^\d+]/g, "")}` : undefined,
-              },
-              { icon: Linkedin, label: "LinkedIn", value: site.linkedinLabel, href: site.linkedin },
-              { icon: MapPin, label: "Based in", value: site.location },
-            ].map((c) => {
+            {contactContent.details.map((content) => {
+              const c = getContactDetail(content.key, content.label);
               const inner = (
                 <>
                   <c.icon className="size-5 text-accent" aria-hidden />
@@ -85,7 +105,9 @@ function ContactPage() {
                 <a
                   key={c.label}
                   href={c.href}
-                  {...(c.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  {...(c.href.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className="flex items-start gap-4 rounded-md border bg-card p-6 shadow-card transition-colors hover:border-accent"
                 >
                   {inner}
@@ -98,29 +120,73 @@ function ContactPage() {
             })}
           </div>
 
-          <form onSubmit={onSubmit} noValidate className="rounded-md border bg-card p-6 shadow-card md:p-10" aria-labelledby="form-heading">
-            <h2 id="form-heading" className="text-2xl font-semibold">Send a message</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Submitting opens your email app with the message ready to send.
-            </p>
+          <form
+            onSubmit={onSubmit}
+            noValidate
+            className="rounded-md border bg-card p-6 shadow-card md:p-10"
+            aria-labelledby="form-heading"
+          >
+            <h2 id="form-heading" className="text-2xl font-semibold">
+              {contactContent.form.title}
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">{contactContent.form.description}</p>
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
-              <Field id="name" label="Name" error={errors.name}>
-                <Input id="name" name="name" autoComplete="name" maxLength={100} aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined} />
+              <Field id="name" label={contactContent.form.fields.name.label} error={errors.name}>
+                <Input
+                  id="name"
+                  name="name"
+                  autoComplete="name"
+                  maxLength={contactContent.form.fields.name.maxLength}
+                  aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? "name-error" : undefined}
+                />
               </Field>
-              <Field id="email" label="Email" error={errors.email}>
-                <Input id="email" name="email" type="email" autoComplete="email" maxLength={255} aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} />
+              <Field id="email" label={contactContent.form.fields.email.label} error={errors.email}>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  maxLength={contactContent.form.fields.email.maxLength}
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-error" : undefined}
+                />
               </Field>
-              <Field id="organisation" label="Organisation (optional)" error={errors.organisation} className="sm:col-span-2">
-                <Input id="organisation" name="organisation" autoComplete="organization" maxLength={120} />
+              <Field
+                id="organisation"
+                label={contactContent.form.fields.organisation.label}
+                error={errors.organisation}
+                className="sm:col-span-2"
+              >
+                <Input
+                  id="organisation"
+                  name="organisation"
+                  autoComplete="organization"
+                  maxLength={contactContent.form.fields.organisation.maxLength}
+                />
               </Field>
-              <Field id="message" label="Message" error={errors.message} className="sm:col-span-2">
-                <Textarea id="message" name="message" rows={6} maxLength={2000} aria-invalid={!!errors.message} aria-describedby={errors.message ? "message-error" : undefined} />
+              <Field
+                id="message"
+                label={contactContent.form.fields.message.label}
+                error={errors.message}
+                className="sm:col-span-2"
+              >
+                <Textarea
+                  id="message"
+                  name="message"
+                  rows={contactContent.form.fields.message.rows}
+                  maxLength={contactContent.form.fields.message.maxLength}
+                  aria-invalid={!!errors.message}
+                  aria-describedby={errors.message ? "message-error" : undefined}
+                />
               </Field>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button type="submit" size="lg">Send message</Button>
+              <Button type="submit" size="lg">
+                {contactContent.form.submitButton}
+              </Button>
               <p role="status" className="text-sm text-accent">
-                {sent ? "Opening your email app…" : ""}
+                {sent ? contactContent.form.openingEmailStatus : ""}
               </p>
             </div>
           </form>
@@ -130,13 +196,29 @@ function ContactPage() {
   );
 }
 
-function Field({ id, label, error, className, children }: { id: string; label: string; error?: string | undefined; className?: string; children: ReactNode }) {
+function Field({
+  id,
+  label,
+  error,
+  className,
+  children,
+}: {
+  id: string;
+  label: string;
+  error?: string | undefined;
+  className?: string;
+  children: ReactNode;
+}) {
   return (
     <div className={className}>
-      <Label htmlFor={id} className="mb-2 block">{label}</Label>
+      <Label htmlFor={id} className="mb-2 block">
+        {label}
+      </Label>
       {children}
       {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-sm text-destructive">{error}</p>
+        <p id={`${id}-error`} className="mt-1.5 text-sm text-destructive">
+          {error}
+        </p>
       )}
     </div>
   );

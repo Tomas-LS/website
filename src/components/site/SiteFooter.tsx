@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin, Mail, Phone } from "lucide-react";
 
-import { navItems, site } from "@/content/site";
+import { common, navItems, site } from "@/content/site";
 
 export function SiteFooter() {
   return (
@@ -12,11 +12,13 @@ export function SiteFooter() {
           <p className="mt-1 text-sm text-inverse-muted">
             {site.title} · {site.specialization}
           </p>
-          <p className="mt-6 max-w-sm text-sm leading-relaxed text-inverse-muted">{site.tagline}</p>
+          <p className="mt-6 max-w-sm text-sm leading-relaxed text-inverse-muted">
+            {common.footer.tagline}
+          </p>
         </div>
 
-        <nav aria-label="Footer">
-          <p className="eyebrow text-inverse-muted">Pages</p>
+        <nav aria-label={common.navigation.footerLabel}>
+          <p className="eyebrow text-inverse-muted">{common.footer.pagesHeading}</p>
           <ul className="mt-4 space-y-2 text-sm">
             {navItems.map((item) => (
               <li key={item.to}>
@@ -29,10 +31,13 @@ export function SiteFooter() {
         </nav>
 
         <div>
-          <p className="eyebrow text-inverse-muted">Contact</p>
+          <p className="eyebrow text-inverse-muted">{common.footer.contactHeading}</p>
           <ul className="mt-4 space-y-3 text-sm">
             <li>
-              <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 hover:text-accent">
+              <a
+                href={`mailto:${site.email}`}
+                className="inline-flex items-center gap-2 hover:text-accent"
+              >
                 <Mail className="size-4" aria-hidden /> {site.email}
               </a>
             </li>
@@ -54,7 +59,7 @@ export function SiteFooter() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 hover:text-accent"
                 >
-                  <Linkedin className="size-4" aria-hidden /> LinkedIn
+                  <Linkedin className="size-4" aria-hidden /> {common.footer.linkedinLabel}
                 </a>
               </li>
             )}
@@ -63,7 +68,9 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-inverse-border">
         <div className="container-page flex flex-col gap-2 py-5 text-xs text-inverse-muted md:flex-row md:justify-between">
-          <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} {site.name}. {common.footer.allRightsReserved}
+          </p>
           <p className="font-mono">{site.location}</p>
         </div>
       </div>

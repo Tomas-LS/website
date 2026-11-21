@@ -1,0 +1,87 @@
+{
+  "_comments": {
+    "order": "Controls project-card order on the Projects page; lower numbers appear first.",
+    "slug": "Stable URL segment for this case study; changing it changes the project's URL.",
+    "title": "Project heading shown on the card and case-study page.",
+    "summary": "Short project description shown on cards and used as the case-study page description.",
+    "category": "Project type shown above the title.",
+    "year": "Project year shown with the category.",
+    "role": "Your role on the project.",
+    "duration": "How long the project took.",
+    "context": "Course, internship, organisation, or other project context.",
+    "tools": "Software, methods, and materials used.",
+    "images": "Image paths are relative to src/assets. Use just the filename for root files, or include a subfolder such as Extras/drawing.jpg. Gallery entries without a path render as labelled placeholders.",
+    "metrics": "Short results and measurements displayed beneath the cover image.",
+    "problem": "Problem definition paragraph.",
+    "requirements": "User and engineering requirements, listed in display order.",
+    "approach": "Engineering approach summary.",
+    "process": "Design-process steps, each with a heading and description.",
+    "fabrication": "How the design was manufactured or assembled.",
+    "outcome": "Project result and impact.",
+    "gallery": "Add, remove, or reorder figure objects here. Each figure has an editable number, image path, alt description, caption, and kind."
+  },
+  "order": 2,
+  "slug": "adaptive-grip-system",
+  "title": "Adaptive Utensil & Hand-Grip System",
+  "summary": "A family of 3D-printed, user-fitted grips that help people with limited hand function hold utensils, pens and everyday tools.",
+  "category": "Custom Assistive Device",
+  "year": "2024",
+  "role": "Product design, prototyping & user testing",
+  "duration": "10 weeks",
+  "context": "University internship — Occupational Therapy Partner Program",
+  "tools": ["Fusion 360", "FDM 3D printing", "TPU & PLA", "3D scanning"],
+  "cover": {
+    "path": "project-adaptive-grip.jpg",
+    "alt": "Flat lay of teal and white 3D-printed adaptive grips with calipers and sketches"
+  },
+  "metrics": [
+    { "value": "11", "label": "Iterations tested" },
+    { "value": "6", "label": "Users fitted" },
+    { "value": "€4", "label": "Material cost per grip" }
+  ],
+  "problem": "Off-the-shelf foam grips wear out quickly and rarely fit hands affected by arthritis, cerebral palsy or spinal cord injury, forcing therapists to improvise with tape and putty.",
+  "requirements": [
+    "Fit a range of hand sizes and grip patterns from a single parametric model",
+    "Be dishwasher-safe and printable in under two hours",
+    "Accept standard cutlery handles from 8 to 14 mm wide",
+    "Allow a therapist to adjust fit without CAD experience"
+  ],
+  "approach": "I built a parametric Fusion 360 model driven by five hand measurements, so a therapist enters values and exports a printable file. Soft TPU zones were added where users reported pressure points.",
+  "process": [
+    {
+      "title": "Observation",
+      "body": "Shadowed therapy sessions to record grip types and failure points of existing aids."
+    },
+    {
+      "title": "Parametric modelling",
+      "body": "Created a configurable model with user-parameter tables for diameter, angle and strap position."
+    },
+    {
+      "title": "Rapid iteration",
+      "body": "Printed and tested 11 iterations with six users, refining wall thickness and strap geometry."
+    }
+  ],
+  "fabrication": "Printed on FDM machines in PLA for rigid cores and TPU 95A for contact surfaces, using a two-material print with a mechanical interlock instead of adhesive.",
+  "outcome": "The therapy team now prints personalised grips in-house. Average fitting time dropped from a full session to under 20 minutes.",
+  "gallery": [
+    {
+      "figure": "01",
+      "path": "project-adaptive-grip.jpg",
+      "alt": "Prototype grips laid out on a cutting mat",
+      "caption": "Prototype family, iterations 4–9",
+      "kind": "photo"
+    },
+    {
+      "figure": "02",
+      "alt": "Parametric CAD model placeholder",
+      "caption": "Parametric model with user-parameter table",
+      "kind": "cad"
+    },
+    {
+      "figure": "03",
+      "alt": "Hand sketch placeholder",
+      "caption": "Early grip-pattern sketches",
+      "kind": "drawing"
+    }
+  ]
+}

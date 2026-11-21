@@ -1,0 +1,104 @@
+{
+  "_comments": {
+    "meta": "Homepage browser and search-result copy. Keep {name} where the profile name should appear.",
+    "intro": "Short introductory paragraph displayed below the homepage headline.",
+    "hero.titleParts": "These three strings form the homepage headline; keep emphasis in the middle part.",
+    "hero.image.path": "Image path relative to src/assets. Use just the filename for root files, or include a subfolder such as Extras/hero.jpg.",
+    "hero.image.alt": "Accessible description for the homepage image.",
+    "hero.image.caption": "Editable figure caption displayed below the homepage image.",
+    "hero.stats": "Homepage statistics in display order. Use {projectCount} to show the current project count.",
+    "specialisation.areas": "Focus-area cards in display order. icon must be one of accessibility, helping, cog, or users.",
+    "featuredProjects": "Introductory copy above the automatically generated project cards.",
+    "process.steps": "Process cards in display order; add, remove, or edit steps here.",
+    "contactBand": "Closing call-to-action copy and button labels."
+  },
+  "meta": {
+    "title": "{name} — Engineering for a More Accessible World",
+    "description": "Mechanical engineer designing wheelchair adaptations, accessibility solutions and custom assistive devices for people with disabilities."
+  },
+  "intro": "Add a short introduction here.",
+  "hero": {
+    "titleParts": {
+      "prefix": "Engineering for a More ",
+      "emphasis": "Accessible",
+      "suffix": " World."
+    },
+    "image": {
+      "path": "IMG_6905.JPG",
+      "alt": "Wheelchair-mounted tray with a custom joystick control and blue ball grip",
+      "width": 4032,
+      "height": 3024,
+      "figure": "00",
+      "caption": "Custom flip-over joystick and flat-switch mount"
+    },
+    "projectsButton": "View projects",
+    "contactButton": "Get in touch",
+    "stats": [
+      { "value": "{projectCount}", "label": "Case studies" },
+      { "value": "2", "label": "Internships" },
+      { "value": "15+", "label": "Users involved" }
+    ]
+  },
+  "specialisation": {
+    "index": "01",
+    "eyebrow": "Specialisation",
+    "title": "Mechanical design where the user comes first.",
+    "lead": "My work sits between mechanical engineering and rehabilitation — making devices that are strong, light and simple enough to use every day.",
+    "areas": [
+      {
+        "icon": "accessibility",
+        "title": "Wheelchair adaptations",
+        "body": "Mounts, trays, positioning aids and frame modifications that fit the chair and the person in it."
+      },
+      {
+        "icon": "helping",
+        "title": "Assistive devices",
+        "body": "Custom mechanical tools for daily living, shaped around grip, reach and strength."
+      },
+      {
+        "icon": "cog",
+        "title": "Accessibility solutions",
+        "body": "Ramps, access aids and environmental fixes that remove barriers in the built world."
+      },
+      {
+        "icon": "users",
+        "title": "User-centred design",
+        "body": "Co-design with users and therapists, from first interview to field-tested prototype."
+      }
+    ]
+  },
+  "featuredProjects": {
+    "index": "02",
+    "eyebrow": "Selected work",
+    "title": "Featured projects",
+    "lead": "Case studies from my university internships — from problem definition through fabrication and testing.",
+    "allProjectsButton": "All projects"
+  },
+  "process": {
+    "index": "03",
+    "eyebrow": "Method",
+    "title": "From a real barrier to a working device.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Define",
+        "body": "Understand the person, the task and the barrier."
+      },
+      { "number": "02", "title": "Specify", "body": "Turn needs into measurable requirements." },
+      {
+        "number": "03",
+        "title": "Design",
+        "body": "Concepts, CAD, analysis and material selection."
+      },
+      { "number": "04", "title": "Build", "body": "Prototype, machine, print and assemble." },
+      { "number": "05", "title": "Validate", "body": "Test with users and iterate until it works." }
+    ]
+  },
+  "contactBand": {
+    "eyebrow": "Open to opportunities",
+    "title": "Looking for a mechanical engineer in assistive technology?",
+    "body": "I'd be glad to talk about roles, projects or collaborations.",
+    "contactButton": "Contact me",
+    "aboutButton": "About me"
+  }
+}

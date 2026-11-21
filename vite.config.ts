@@ -3,6 +3,7 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
+import { contentImagesPlugin } from "./vite-content-images";
 import { projectSlugs } from "./src/content/project-slugs";
 
 /**
@@ -28,6 +29,7 @@ export default defineConfig({
   base: basePath,
   resolve: { tsconfigPaths: true },
   plugins: [
+    contentImagesPlugin(),
     tanstackStart({
       ...(staticExport
         ? {

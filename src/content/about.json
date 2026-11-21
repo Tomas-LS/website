@@ -1,0 +1,80 @@
+{
+  "_comments": {
+    "meta.title": "Browser title template; {name} is filled from the existing profile JSON.",
+    "meta.description": "Search-result description; {name} is filled from the existing profile JSON.",
+    "heading.eyebrow": "Small label above the main About heading.",
+    "introduction.primary": "Main About heading.",
+    "introduction.secondary": "Introductory paragraph below the heading; {name} is filled from the profile.",
+    "background": "Background section label, heading, and biography paragraphs displayed in order.",
+    "experience.entries": "Education and experience timeline cards. Each entry contains its date, role, organisation, description, and icon key; add or remove entries as needed.",
+    "interests.items": "Areas of work displayed in order; add or remove list entries as needed.",
+    "goals": "Professional-goals section copy and its contact button."
+  },
+  "meta": {
+    "title": "About — {name}",
+    "description": "About {name}: mechanical engineering education, internship experience in rehabilitation engineering, and professional goals in assistive technology."
+  },
+  "heading": {
+    "eyebrow": "About me"
+  },
+  "introduction": {
+    "primary": "A mechanical engineer who designs with people, not just for them.",
+    "secondary": "I'm {name}, a mechanical engineer focused on assistive technology. I enjoy the moment a device stops being a prototype and becomes part of someone's daily routine."
+  },
+  "background": {
+    "index": "01",
+    "eyebrow": "Biography",
+    "title": "Background",
+    "paragraphs": [
+      "My interest in accessibility began when I helped adapt a family member's wheelchair and realised how few products are designed around the individual. Since then I have focused my studies and internships on rehabilitation engineering.",
+      "During my internships I worked alongside occupational therapists, clinicians and wheelchair users — running interviews, defining requirements, modelling in CAD, analysing parts and fabricating prototypes in the workshop.",
+      "I care about devices that are robust, light, affordable and easy to maintain, and about documenting them clearly so others can build on the work."
+    ]
+  },
+  "experience": {
+    "index": "02",
+    "eyebrow": "Experience & education",
+    "title": "Internships and studies",
+    "entries": [
+      {
+        "period": "2025",
+        "title": "Mechanical Engineering Intern",
+        "organisation": "Rehabilitation Engineering Lab, University Hospital",
+        "body": "Designed and tested custom wheelchair adaptations with clinicians and users; produced manufacturing drawings and FEA reports.",
+        "icon": "briefcase"
+      },
+      {
+        "period": "2024",
+        "title": "Product Design Intern",
+        "organisation": "Occupational Therapy Partner Program",
+        "body": "Developed parametric 3D-printed assistive grips and trained therapists to customise and print them in-house.",
+        "icon": "briefcase"
+      },
+      {
+        "period": "2021 – 2026",
+        "title": "MEng Mechanical Engineering",
+        "organisation": "University of Engineering",
+        "body": "Focus on mechanical design, biomechanics and product development. Final-year project in assistive mobility.",
+        "icon": "graduation"
+      }
+    ]
+  },
+  "interests": {
+    "index": "03",
+    "eyebrow": "Interests",
+    "title": "What I want to work on",
+    "items": [
+      "Rehabilitation and mobility engineering",
+      "Human-centred and inclusive product design",
+      "Lightweight structures and material efficiency",
+      "Low-cost, locally manufacturable assistive devices"
+    ]
+  },
+  "goals": {
+    "index": "04",
+    "eyebrow": "Goals",
+    "title": "Professional goals",
+    "lead": "I'm looking to join a product development or rehabilitation engineering team where I can take assistive devices from user research through to manufacture — and keep learning from the people who use them.",
+    "contactButton": "Get in touch"
+  }
+}

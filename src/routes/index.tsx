@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Accessibility, ArrowRight, Cog, HandHelping, Users } from "lucide-react";
 
-import heroImage from "@/assets/IMG_6905.JPG";
+import homeContent from "@/content/home.json";
+import { resolveContentImage } from "@/content/image-paths";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -9,16 +10,30 @@ import { Button } from "@/components/ui/button";
 import { projects } from "@/content/projects";
 import { site } from "@/content/site";
 
-const description =
-  "Mechanical engineer designing wheelchair adaptations, accessibility solutions and custom assistive devices for people with disabilities.";
+function getFocusIcon(key: string) {
+  switch (key) {
+    case "accessibility":
+      return Accessibility;
+    case "helping":
+      return HandHelping;
+    case "cog":
+      return Cog;
+    case "users":
+      return Users;
+    default:
+      throw new Error(`Unknown homepage focus-area icon "${key}".`);
+  }
+}
+
+const heroImage = resolveContentImage(homeContent.hero.image.path);
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${site.name} — Engineering for a More Accessible World` },
-      { name: "description", content: description },
-      { property: "og:title", content: `${site.name} — Engineering for a More Accessible World` },
-      { property: "og:description", content: description },
+      { title: homeContent.meta.title.replace("{name}", site.name) },
+      { name: "description", content: homeContent.meta.description },
+      { property: "og:title", content: homeContent.meta.title.replace("{name}", site.name) },
+      { property: "og:description", content: homeContent.meta.description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -26,38 +41,7 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const focusAreas = [
-  {
-    icon: Accessibility,
-    title: "Wheelchair adaptations",
-    body: "Mounts, trays, positioning aids and frame modifications that fit the chair and the person in it.",
-  },
-  {
-    icon: HandHelping,
-    title: "Assistive devices",
-    body: "Custom mechanical tools for daily living, shaped around grip, reach and strength.",
-  },
-  {
-    icon: Cog,
-    title: "Accessibility solutions",
-    body: "Ramps, access aids and environmental fixes that remove barriers in the built world.",
-  },
-  {
-    icon: Users,
-    title: "User-centred design",
-    body: "Co-design with users and therapists, from first interview to field-tested prototype.",
-  },
-];
-
-const processSteps = [
-  { n: "01", title: "Define", body: "Understand the person, the task and the barrier." },
-  { n: "02", title: "Specify", body: "Turn needs into measurable requirements." },
-  { n: "03", title: "Design", body: "Concepts, CAD, analysis and material selection." },
-  { n: "04", title: "Build", body: "Prototype, machine, print and assemble." },
-  { n: "05", title: "Validate", body: "Test with users and iterate until it works." },
-];
-
-function HomePage() {
+export function HomePage() {
   return (
     <>
       {/* Intro */}
@@ -69,28 +53,30 @@ function HomePage() {
               {site.title} · {site.specialization}
             </p>
             <h1 className="mt-6 text-[2.6rem] font-semibold leading-[1.04] sm:text-6xl lg:text-[4.4rem]">
-              Engineering for a More <span className="text-accent">Accessible</span> World.
+              {homeContent.hero.titleParts.prefix}
+              <span className="text-accent">{homeContent.hero.titleParts.emphasis}</span>
+              {homeContent.hero.titleParts.suffix}
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">{site.intro}</p>
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              {homeContent.intro}
+            </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button asChild size="lg">
                 <Link to="/projects">
-                  View projects <ArrowRight aria-hidden />
+                  {homeContent.hero.projectsButton} <ArrowRight aria-hidden />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link to="/contact">Get in touch</Link>
+                <Link to="/contact">{homeContent.hero.contactButton}</Link>
               </Button>
             </div>
             <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t pt-6">
-              {[
-                { v: String(projects.length), l: "Case studies" },
-                { v: "2", l: "Internships" },
-                { v: "15+", l: "Users involved" },
-              ].map((s) => (
-                <div key={s.l} className="flex flex-col-reverse gap-1">
-                  <dt className="eyebrow text-[0.6rem] text-muted-foreground">{s.l}</dt>
-                  <dd className="font-display text-3xl font-semibold text-primary">{s.v}</dd>
+              {homeContent.hero.stats.map((stat) => (
+                <div key={stat.label} className="flex flex-col-reverse gap-1">
+                  <dt className="eyebrow text-[0.6rem] text-muted-foreground">{stat.label}</dt>
+                  <dd className="font-display text-3xl font-semibold text-primary">
+                    {stat.value.replace("{projectCount}", String(projects.length))}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -101,16 +87,16 @@ function HomePage() {
               <div className="overflow-hidden rounded-md shadow-lift">
                 <img
                   src={heroImage}
-                  alt="Wheelchair-mounted tray with a custom joystick control and blue ball grip"
-                  width={4032}
-                  height={3024}
+                  alt={homeContent.hero.image.alt}
+                  width={homeContent.hero.image.width}
+                  height={homeContent.hero.image.height}
                   fetchPriority="high"
                   className="aspect-[4/3] w-full object-cover"
                 />
               </div>
               <figcaption className="mt-4 flex items-center justify-between gap-4 text-xs text-muted-foreground">
-                <span className="eyebrow text-accent">Fig. 00</span>
-                <span className="font-mono">Custom wheelchair tray and joystick control</span>
+                <span className="eyebrow text-accent">Fig. {homeContent.hero.image.figure}</span>
+                <span className="font-mono">{homeContent.hero.image.caption}</span>
               </figcaption>
             </figure>
           </div>
@@ -122,20 +108,23 @@ function HomePage() {
         <div className="container-page">
           <Reveal>
             <SectionHeading
-              index="01"
-              eyebrow="Specialisation"
-              title={<span id="focus-heading">Mechanical design where the user comes first.</span>}
-              lead="My work sits between mechanical engineering and rehabilitation — making devices that are strong, light and simple enough to use every day."
+              index={homeContent.specialisation.index}
+              eyebrow={homeContent.specialisation.eyebrow}
+              title={<span id="focus-heading">{homeContent.specialisation.title}</span>}
+              lead={homeContent.specialisation.lead}
             />
           </Reveal>
           <div className="mt-14 grid gap-px overflow-hidden rounded-md border bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {focusAreas.map((f, i) => (
-              <Reveal key={f.title} delay={i * 80} className="bg-card p-7">
-                <f.icon className="size-7 text-accent" aria-hidden strokeWidth={1.6} />
-                <h3 className="mt-6 text-lg font-semibold">{f.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-              </Reveal>
-            ))}
+            {homeContent.specialisation.areas.map((area, i) => {
+              const Icon = getFocusIcon(area.icon);
+              return (
+                <Reveal key={area.title} delay={i * 80} className="bg-card p-7">
+                  <Icon className="size-7 text-accent" aria-hidden strokeWidth={1.6} />
+                  <h3 className="mt-6 text-lg font-semibold">{area.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{area.body}</p>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -146,22 +135,22 @@ function HomePage() {
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <Reveal>
               <SectionHeading
-                index="02"
-                eyebrow="Selected work"
-                title={<span id="featured-heading">Featured projects</span>}
-                lead="Case studies from my university internships — from problem definition through fabrication and testing."
+                index={homeContent.featuredProjects.index}
+                eyebrow={homeContent.featuredProjects.eyebrow}
+                title={<span id="featured-heading">{homeContent.featuredProjects.title}</span>}
+                lead={homeContent.featuredProjects.lead}
               />
             </Reveal>
             <Button asChild variant="outline">
               <Link to="/projects">
-                All projects <ArrowRight aria-hidden />
+                {homeContent.featuredProjects.allProjectsButton} <ArrowRight aria-hidden />
               </Link>
             </Button>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {projects.slice(0, 3).map((p, i) => (
               <Reveal key={p.slug} delay={i * 100}>
-                <ProjectCard project={p} index={i} />
+                <ProjectCard project={p} />
               </Reveal>
             ))}
           </div>
@@ -169,22 +158,25 @@ function HomePage() {
       </section>
 
       {/* Process */}
-      <section className="blueprint-inverse bg-inverse py-20 text-inverse-foreground md:py-28" aria-labelledby="process-heading">
+      <section
+        className="blueprint-inverse bg-inverse py-20 text-inverse-foreground md:py-28"
+        aria-labelledby="process-heading"
+      >
         <div className="container-page">
           <Reveal>
             <SectionHeading
               inverse
-              index="03"
-              eyebrow="Method"
-              title={<span id="process-heading">From a real barrier to a working device.</span>}
+              index={homeContent.process.index}
+              eyebrow={homeContent.process.eyebrow}
+              title={<span id="process-heading">{homeContent.process.title}</span>}
             />
           </Reveal>
           <ol className="mt-14 grid gap-px overflow-hidden rounded-md border border-inverse-border bg-inverse-border sm:grid-cols-2 lg:grid-cols-5">
-            {processSteps.map((s, i) => (
-              <Reveal as="li" key={s.n} delay={i * 80} className="bg-inverse p-7">
-                <span className="font-mono text-sm text-accent">{s.n}</span>
-                <h3 className="mt-8 text-xl font-semibold">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-inverse-muted">{s.body}</p>
+            {homeContent.process.steps.map((step, i) => (
+              <Reveal as="li" key={step.number} delay={i * 80} className="bg-inverse p-7">
+                <span className="font-mono text-sm text-accent">{step.number}</span>
+                <h3 className="mt-8 text-xl font-semibold">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-inverse-muted">{step.body}</p>
               </Reveal>
             ))}
           </ol>
@@ -196,20 +188,18 @@ function HomePage() {
         <Reveal className="container-page">
           <div className="flex flex-col items-start justify-between gap-8 rounded-md border bg-card p-8 shadow-card md:flex-row md:items-center md:p-12">
             <div>
-              <p className="eyebrow text-accent">Open to opportunities</p>
+              <p className="eyebrow text-accent">{homeContent.contactBand.eyebrow}</p>
               <h2 className="mt-3 max-w-xl text-3xl font-semibold leading-tight">
-                Looking for a mechanical engineer in assistive technology?
+                {homeContent.contactBand.title}
               </h2>
-              <p className="mt-3 text-muted-foreground">
-                I'd be glad to talk about roles, projects or collaborations.
-              </p>
+              <p className="mt-3 text-muted-foreground">{homeContent.contactBand.body}</p>
             </div>
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg" variant="accent">
-                <Link to="/contact">Contact me</Link>
+                <Link to="/contact">{homeContent.contactBand.contactButton}</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link to="/about">About me</Link>
+                <Link to="/about">{homeContent.contactBand.aboutButton}</Link>
               </Button>
             </div>
           </div>

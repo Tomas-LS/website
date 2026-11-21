@@ -1,0 +1,56 @@
+{
+  "_comments": {
+    "meta": "Skills-page browser and search-result copy.",
+    "heading": "Page heading and lead paragraph.",
+    "groups": "Skill groups render in array order. Each group has a heading, display code, and skill list; add or remove groups or list entries as needed."
+  },
+  "meta": {
+    "title": "Skills & Tools — {name}",
+    "description": "CAD software, mechanical design, prototyping, fabrication, material selection and product development skills."
+  },
+  "heading": {
+    "eyebrow": "Skills & tools",
+    "title": "From first sketch to finished part.",
+    "lead": "The software, methods and workshop skills I use to design, analyse and build assistive devices."
+  },
+  "groups": [
+    {
+      "title": "CAD Software",
+      "code": "01",
+      "items": ["SolidWorks (CSWA)", "Autodesk Fusion 360", "CATIA V5", "AutoCAD", "GD&T drawings"]
+    },
+    {
+      "title": "Mechanical Design",
+      "code": "02",
+      "items": [
+        "Mechanism & linkage design",
+        "FEA / static analysis",
+        "Tolerance stack-ups",
+        "Ergonomics & anthropometry",
+        "Design for assembly"
+      ]
+    },
+    {
+      "title": "Prototyping & Fabrication",
+      "code": "03",
+      "items": [
+        "FDM & SLA 3D printing",
+        "CNC milling & turning",
+        "TIG welding",
+        "Laser cutting",
+        "Workshop hand tools"
+      ]
+    },
+    {
+      "title": "Materials & Product Development",
+      "code": "04",
+      "items": [
+        "Aluminium & steel alloys",
+        "Engineering polymers (TPU, PETG, HDPE)",
+        "Material selection (Ashby)",
+        "User testing & co-design",
+        "ISO 7176 / EN 12183 awareness"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "_comments": {
+    "meta.title": "Project listing browser-title template; {name} is filled from the profile.",
+    "meta.detailTitle": "Project detail browser-title template; {title} and {name} are filled from project and profile data.",
+    "meta.description": "Search-result description for the project listing page.",
+    "listing": "Heading and intro shown above all project cards.",
+    "card.readCaseStudy": "Accessible link text on each project card.",
+    "detail.metadataLabels": "Labels for the role, duration, context, and tools displayed near each project title.",
+    "detail.sections": "Shared project detail section numbers and headings.",
+    "detail.figureKinds": "Placeholder labels for gallery items without an image path."
+  },
+  "meta": {
+    "title": "Projects — {name}",
+    "detailTitle": "{title} — {name}",
+    "description": "Engineering case studies in wheelchair adaptation, assistive devices and accessibility — problem, requirements, design, fabrication and outcome."
+  },
+  "listing": {
+    "eyebrow": "Case studies",
+    "title": "Projects",
+    "lead": "Real projects from my university internships. Each case study follows the engineering process from problem definition to final outcome."
+  },
+  "card": {
+    "readCaseStudy": "Read case study",
+    "figurePrefix": "Fig."
+  },
+  "detail": {
+    "allProjects": "All projects",
+    "notFoundTitle": "Project not found",
+    "notFoundDescription": "This case study doesn't exist or has moved.",
+    "backToProjects": "Back to projects",
+    "metadataLabels": {
+      "role": "Role",
+      "duration": "Duration",
+      "context": "Context",
+      "tools": "Tools"
+    },
+    "sections": {
+      "problem": { "number": "01", "title": "Problem definition" },
+      "requirements": { "number": "02", "title": "User requirements" },
+      "approach": { "number": "03", "title": "Engineering approach" },
+      "process": { "number": "04", "title": "Design process" },
+      "fabrication": { "number": "05", "title": "Fabrication" },
+      "outcome": { "number": "06", "title": "Final outcome" },
+      "gallery": { "number": "07", "title": "Gallery, CAD & drawings" }
+    },
+    "figurePrefix": "Fig.",
+    "figureKinds": {
+      "photo": "Photograph",
+      "cad": "CAD",
+      "drawing": "Drawing",
+      "test": "Testing"
+    },
+    "placeholderSuffix": "coming soon",
+    "nextProject": "Next project"
+  }
+}

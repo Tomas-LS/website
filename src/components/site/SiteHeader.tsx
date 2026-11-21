@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
-import { navItems, site } from "@/content/site";
+import { common, navItems, site } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 export function Logo() {
@@ -33,7 +33,7 @@ export function SiteHeader() {
       <div className="container-page flex h-16 items-center justify-between md:h-20">
         <Logo />
 
-        <nav aria-label="Main" className="hidden md:block">
+        <nav aria-label={common.navigation.primaryLabel} className="hidden md:block">
           <ul className="flex items-center gap-1">
             {navItems.map((item) => (
               <li key={item.to}>
@@ -54,7 +54,7 @@ export function SiteHeader() {
           className="grid size-10 place-items-center rounded-sm border md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? common.navigation.closeMenu : common.navigation.openMenu}
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -63,7 +63,7 @@ export function SiteHeader() {
 
       <nav
         id="mobile-nav"
-        aria-label="Mobile"
+        aria-label={common.navigation.mobileLabel}
         className={cn("border-t bg-background md:hidden", open ? "block" : "hidden")}
       >
         <ul className="container-page flex flex-col py-3">

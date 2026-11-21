@@ -1,0 +1,87 @@
+{
+  "_comments": {
+    "order": "Controls project-card order on the Projects page; lower numbers appear first.",
+    "slug": "Stable URL segment for this case study; changing it changes the project's URL.",
+    "title": "Project heading shown on the card and case-study page.",
+    "summary": "Short project description shown on cards and used as the case-study page description.",
+    "category": "Project type shown above the title.",
+    "year": "Project year shown with the category.",
+    "role": "Your role on the project.",
+    "duration": "How long the project took.",
+    "context": "Course, internship, organisation, or other project context.",
+    "tools": "Software, methods, and materials used.",
+    "images": "Image paths are relative to src/assets. Use just the filename for root files, or include a subfolder such as Extras/drawing.jpg. Gallery entries without a path render as labelled placeholders.",
+    "metrics": "Short results and measurements displayed beneath the cover image.",
+    "problem": "Problem definition paragraph.",
+    "requirements": "User and engineering requirements, listed in display order.",
+    "approach": "Engineering approach summary.",
+    "process": "Design-process steps, each with a heading and description.",
+    "fabrication": "How the design was manufactured or assembled.",
+    "outcome": "Project result and impact.",
+    "gallery": "Add, remove, or reorder figure objects here. Each figure has an editable number, image path, alt description, caption, and kind."
+  },
+  "order": 3,
+  "slug": "portable-folding-ramp",
+  "title": "Lightweight Portable Folding Ramp",
+  "summary": "A two-section aluminium ramp that folds to briefcase size and gives wheelchair users step-free access to buildings with one or two steps.",
+  "category": "Accessibility Solution",
+  "year": "2024",
+  "role": "Structural design & field testing",
+  "duration": "8 weeks",
+  "context": "University design project with local accessibility association",
+  "tools": ["SolidWorks", "Hand calculations", "Sheet metal design", "Anti-slip coatings"],
+  "cover": {
+    "path": "project-folding-ramp.jpg",
+    "alt": "Folding aluminium ramp deployed over concrete steps at a building entrance"
+  },
+  "metrics": [
+    { "value": "9.4 kg", "label": "Total mass" },
+    { "value": "300 kg", "label": "Proof load" },
+    { "value": "1:6", "label": "Max. gradient" }
+  ],
+  "problem": "Many small shops and older buildings have one or two entrance steps but no space or budget for a permanent ramp. Existing portable ramps were heavy and hard for staff to deploy.",
+  "requirements": [
+    "Mass under 10 kg so one person can carry and deploy it",
+    "Support a powered wheelchair and user up to 250 kg",
+    "Slip-resistant in wet conditions",
+    "Fold to fit behind a shop counter"
+  ],
+  "approach": "I sized extruded side rails using beam theory, then verified with FEA. A continuous hinge and interlocking channel let the two halves self-align when unfolded.",
+  "process": [
+    {
+      "title": "Load case definition",
+      "body": "Defined worst-case loads from powered-chair data including dynamic factors for wheel impact."
+    },
+    {
+      "title": "Section optimisation",
+      "body": "Compared four rail profiles for stiffness-to-mass and selected a ribbed channel."
+    },
+    {
+      "title": "Field testing",
+      "body": "Deployed the prototype at three local businesses and collected feedback from users and staff."
+    }
+  ],
+  "fabrication": "Rails were cut from extruded 6063 aluminium and TIG-welded to a 2 mm deck; a grit-based anti-slip coating was applied and tested with a pendulum friction tester.",
+  "outcome": "The prototype passed a 300 kg proof load with no permanent deformation. The association is using the drawings to source a small production batch.",
+  "gallery": [
+    {
+      "figure": "01",
+      "path": "project-folding-ramp.jpg",
+      "alt": "Ramp deployed at a building entrance",
+      "caption": "Field test at a local business",
+      "kind": "photo"
+    },
+    {
+      "figure": "02",
+      "alt": "Ramp CAD drawing placeholder",
+      "caption": "General arrangement drawing",
+      "kind": "cad"
+    },
+    {
+      "figure": "03",
+      "alt": "Load test placeholder",
+      "caption": "Proof-load test set-up",
+      "kind": "test"
+    }
+  ]
+}

@@ -31,9 +31,12 @@ Commit and push the edit to `main` to trigger a new Pages build, or run **Action
 
 ## Project structure
 
-- `src/content/` contains profile, skills, and project data.
+- `src/content/profile.json` contains the editable profile and contact details.
+- `src/content/common.json` contains shared navigation, footer, and accessibility labels.
+- `src/content/home.json`, `about.json`, `skills-tools.json`, `contact.json`, and `projects-page.json` hold page copy and labels.
+- `src/content/projects/` contains one editable JSON file per project. Add a JSON file there with a unique slug and order to add a project; its static route is discovered automatically.
 - `src/routes/` contains the home, project, about, skills, and contact pages.
-- `src/assets/` contains local project and portfolio images.
+- `src/assets/` contains local project and portfolio images. In JSON, set an image path to its filename, or use a relative subfolder such as `Extras/drawing.jpg` for `src/assets/Extras/drawing.jpg`. An optional `assets/` prefix is also accepted.
 - `public/` contains static files served as-is.
 
-The contact form validates its fields and opens a prefilled email in the visitor's mail application, so it works without a backend service.
+Only image files referenced by the page and project JSON are bundled. Gallery entries without an image path render as labelled placeholders; add a path, alt description and caption to populate one. The contact form's labels, validation messages and mailto copy are editable in `src/content/contact.json`; profile details remain in `src/content/profile.json`. The form opens a prefilled email in the visitor's mail application, so it works without a backend service.

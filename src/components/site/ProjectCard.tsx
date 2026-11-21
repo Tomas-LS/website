@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 
+import projectsContent from "@/content/projects-page.json";
 import type { Project } from "@/content/projects";
 
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
+export function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       to="/projects/$slug"
@@ -20,7 +21,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         />
         <span className="eyebrow absolute left-3 top-3 rounded-sm bg-background/90 px-2 py-1 text-[0.62rem] text-foreground">
-          Fig. {String(index + 1).padStart(2, "0")}
+          {projectsContent.card.figurePrefix} {String(project.order).padStart(2, "0")}
         </span>
       </div>
       <div className="flex flex-1 flex-col p-6">
@@ -28,10 +29,15 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           {project.category} · {project.year}
         </p>
         <h3 className="mt-3 text-xl font-semibold leading-snug">{project.title}</h3>
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+        <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+          {project.summary}
+        </p>
         <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-          Read case study
-          <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+          {projectsContent.card.readCaseStudy}
+          <ArrowUpRight
+            className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            aria-hidden
+          />
         </span>
       </div>
     </Link>

@@ -1,0 +1,27 @@
+{
+  "_comments": {
+    "navigation": "Shared navigation labels and accessible names used in the header and footer. Page destinations remain in src/content/site.ts.",
+    "footer": "Shared footer tagline, section headings, link labels, and copyright wording.",
+    "skipLink": "Accessible text for the keyboard skip-to-content link."
+  },
+  "navigation": {
+    "primaryLabel": "Main",
+    "mobileLabel": "Mobile",
+    "footerLabel": "Footer",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "skills": "Skills & Tools",
+    "contact": "Contact"
+  },
+  "footer": {
+    "tagline": "Add your tagline here.",
+    "pagesHeading": "Pages",
+    "contactHeading": "Contact",
+    "linkedinLabel": "LinkedIn",
+    "allRightsReserved": "All rights reserved."
+  },
+  "skipLink": "Skip to content"
+}
