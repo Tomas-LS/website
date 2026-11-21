@@ -34,7 +34,7 @@ Commit and push the edit to `main` to trigger a new Pages build, or run **Action
 - `src/content/profile.json` contains the editable profile and contact details.
 - `src/content/common.json` contains shared navigation, footer, and accessibility labels.
 - `src/content/home.json`, `about.json`, `skills-tools.json`, `contact.json`, and `projects-page.json` hold page copy and labels.
-- `src/content/projects/` contains one editable JSON file per project. Add a JSON file there with a unique slug and order to add a project; its static route is discovered automatically.
+- `src/content/projects/` contains one editable JSON file per project. The temporary filenames are `project-1.json`, `project-2.json`, and `project-3.json`; filenames are labels for now and do not affect URLs. Add a JSON file there with a unique slug and order to add a project; its static route is discovered automatically.
 - `src/routes/` contains the home, project, about, skills, and contact pages.
 - `src/assets/` contains local project and portfolio images. In JSON, set an image path to its filename, or use a relative subfolder such as `Extras/drawing.jpg` for `src/assets/Extras/drawing.jpg`. An optional `assets/` prefix is also accepted.
 - `public/` contains static files served as-is.

@@ -26,6 +26,17 @@ function assertSourceAssetExists(path: string) {
 }
 
 describe("editable page content", () => {
+  it("uses numbered JSON project filenames while preserving display slugs", () => {
+    expect(projectSlugs).toEqual([
+      "modular-wheelchair-tray-mount",
+      "adaptive-grip-system",
+      "portable-folding-ramp",
+    ]);
+    expect(projectContentFiles).toHaveProperty("./projects/project-1.json");
+    expect(projectContentFiles).toHaveProperty("./projects/project-2.json");
+    expect(projectContentFiles).toHaveProperty("./projects/project-3.json");
+  });
+
   it("loads each project JSON in display order and preserves numbered image placeholders", () => {
     expect(projects.map((project) => project.slug)).toEqual(projectSlugs);
     expect(projects[0]?.title).toBe("Modular Wheelchair Tray and Armrest Mount");
