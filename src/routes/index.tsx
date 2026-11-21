@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Accessibility, ArrowRight, Cog, HandHelping, Users } from "lucide-react";
 
-import heroImage from "@/assets/hero-workshop.jpg";
+import heroImage from "@/assets/IMG_6905.JPG";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -101,16 +101,16 @@ function HomePage() {
               <div className="overflow-hidden rounded-md shadow-lift">
                 <img
                   src={heroImage}
-                  alt="Machined aluminium wheelchair mount being fitted to a carbon-fibre wheelchair frame in a workshop"
-                  width={1600}
-                  height={1104}
+                  alt="Wheelchair-mounted tray with a custom joystick control and blue ball grip"
+                  width={4032}
+                  height={3024}
                   fetchPriority="high"
                   className="aspect-[4/3] w-full object-cover"
                 />
               </div>
               <figcaption className="mt-4 flex items-center justify-between gap-4 text-xs text-muted-foreground">
                 <span className="eyebrow text-accent">Fig. 00</span>
-                <span className="font-mono">Custom wheelchair mount · 6061-T6 aluminium</span>
+                <span className="font-mono">Custom wheelchair tray and joystick control</span>
               </figcaption>
             </figure>
           </div>
