@@ -21,48 +21,49 @@
     "gallery": "Add, remove, or reorder figure objects here. Each figure has an editable number, image path, alt description, caption, and kind."
   },
   "order": 1,
-  "slug": "modular-wheelchair-tray-mount",
-  "title": "Modular Wheelchair Tray and Armrest Mount",
-  "summary": "A tool-free, swing-away tray and height-adjustable armrest that clamps to most manual wheelchair frames without drilling.",
-  "category": "Wheelchair Adaptation",
-  "year": "2025",
+  "slug": "pediatric-gait-trainer-tray",
+  "title": "Custom Transparent Tray Design for Pediatric Gait Trainer",
+  "summary": "Designed a lightweight, transparent tray for a pediatric gait trainer, featuring soft silicone edges for safety and object retention. Tool-free attachment allows for quick installation and removal",
+  "category": "Gait Trainer Adaptation",
+  "year": "2026",
   "role": "Design lead, mechanical design & testing",
   "duration": "14 weeks",
-  "context": "University internship — Rehabilitation Engineering Lab",
-  "tools": ["SolidWorks", "FEA (SolidWorks Simulation)", "CNC milling", "6061-T6 aluminium"],
+  "context": "University internship — Penn State's Speech, Language, and Hearing Clinic",
+  "tools": ["Autodesk Fusion", "Abrasive waterjet cutting", "3D printing"],
   "cover": {
-    "path": "project-wheelchair-tray.jpg",
-    "alt": "Manual wheelchair fitted with a swing-away tray and adjustable armrest mount"
+    "path": "pediatric-gait-trainer-tray/IMG_7038.jpeg",
+    "alt": "Pediatric gait trainer with transparent tray and silicone bump border"
   },
   "metrics": [
-    { "value": "−38%", "label": "Mass vs. commercial mount" },
-    { "value": "25 kg", "label": "Tested tray load" },
-    { "value": "< 10 s", "label": "Swing-away time" }
+    { "value": "0.23 m²", "label": "Surface area" },
+    { "value": "1.7 kg", "label": "Total weight" },
+    { "value": "< 10 s", "label": "Installation time" }
   ],
-  "problem": "Wheelchair users at the partner clinic relied on fixed lap trays that blocked transfers and had to be removed by a caregiver. Commercial alternatives required frame drilling, voiding manufacturer warranties.",
+  "problem": "One of the clinic's pediatric patients using a gait trainer required a transparent tray that would not obstruct their view or cause discomfort during therapy sessions. The clinic needed a solution that could be installed and removed without tools.",
+
   "requirements": [
-    "Clamp to round tubes from 22 to 28 mm without permanent modification",
-    "Swing clear of the user with one hand and limited grip strength",
-    "Support at least 20 kg distributed load with a safety factor of 2",
-    "Fit within the chair's folded envelope for car transport"
+    "Quickly (<10 s) and easily attach and detach from the gait trainer without tools",
+    "A level tray surface",
+    "Safe, soft edges that also work to prevent toys and objects from rolling off the tray",
+    "Cover as much area as possible while staying within the gait trainer's footprint"
   ],
   "approach": "I mapped transfer motions with three users and their occupational therapist, then defined a pivot location that clears the knee during side transfers. Concepts were scored against grip effort, mass and adjustability.",
   "process": [
     {
       "title": "Concept & user mapping",
-      "body": "Sketched 12 clamp and pivot concepts; three progressed to foam-core and 3D-printed mock-ups tested with users."
+      "body": ""
     },
     {
       "title": "Detailed design",
-      "body": "Modelled the clamp in SolidWorks with a split-collar geometry and cam lever sized for a 15 N actuation force."
+      "body": ""
     },
     {
       "title": "Analysis",
-      "body": "Ran static FEA on the bracket under 2× rated load and iterated pocketing to remove mass while keeping peak stress under 120 MPa."
+      "body": ""
     }
   ],
-  "fabrication": "Brackets were CNC milled from 6061-T6 aluminium and bead-blasted; the tray surface was laser-cut from 6 mm HDPE. I produced the drawings, tolerancing and assembly instructions for the lab technician.",
-  "outcome": "Two units were deployed for a four-week trial. Users could stow the tray independently, and the clinic adopted the design as a reference for future adaptations.",
+  "fabrication": "",
+  "outcome": "",
   "gallery": [
     {
       "figure": "01",
