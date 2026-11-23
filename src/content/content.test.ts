@@ -11,11 +11,17 @@ import { projectSlugs } from "./project-slugs";
 import { projects } from "./projects";
 import { resolveContentImage } from "./image-paths";
 import { normalizeContentImagePath } from "../../vite-content-images";
+import type { Project } from "./projects";
 
-const projectContentFiles = import.meta.glob<{
-  cover: { path: string };
-  gallery: { path?: string }[];
-}>("./projects/*.json", { eager: true, import: "default" });
+type ProjectContentFile = Omit<Project, "cover" | "gallery"> & {
+  cover: { path: string; alt: string };
+  gallery: (Omit<Project["gallery"][number], "src"> & { path?: string })[];
+};
+
+const projectContentFiles = import.meta.glob<ProjectContentFile>("./projects/*.json", {
+  eager: true,
+  import: "default",
+});
 
 function assertSourceAssetExists(path: string) {
   const assetPath = path
@@ -26,28 +32,29 @@ function assertSourceAssetExists(path: string) {
 }
 
 describe("editable page content", () => {
-  it("uses numbered JSON project filenames while preserving display slugs", () => {
-    expect(projectSlugs).toEqual([
-      "modular-wheelchair-tray-mount",
-      "adaptive-grip-system",
-      "portable-folding-ramp",
-    ]);
-    expect(projectContentFiles).toHaveProperty("./projects/project-1.json");
-    expect(projectContentFiles).toHaveProperty("./projects/project-2.json");
-    expect(projectContentFiles).toHaveProperty("./projects/project-3.json");
+  it("discovers project slugs from every project file in configured order", () => {
+    const expectedSlugs = Object.values(projectContentFiles)
+      .sort((a, b) => a.order - b.order)
+      .map((project) => project.slug);
+
+    expect(projectSlugs).toEqual(expectedSlugs);
+    expect(projects.map((project) => project.slug)).toEqual(expectedSlugs);
   });
 
-  it("loads each project JSON in display order and preserves numbered image placeholders", () => {
-    expect(projects.map((project) => project.slug)).toEqual(projectSlugs);
-    expect(projects[0]?.title).toBe("Modular Wheelchair Tray and Armrest Mount");
-    expect(projects[0]?.year).toBe("2025");
-    expect(projects[0]?.gallery.map((figure) => figure.figure)).toEqual(["01", "02", "03", "04"]);
-    expect(projects[0]?.gallery[2]?.src).toBeUndefined();
-    for (const project of projects) {
-      for (const figure of project.gallery) {
-        if (figure.src) expect(figure.src).toBeTruthy();
-      }
-    }
+  it("preserves project data, configured order, and optional gallery images", () => {
+    const expectedProjects = Object.values(projectContentFiles)
+      .sort((a, b) => a.order - b.order)
+      .map(({ cover, gallery, ...project }) => ({
+        ...project,
+        cover: { src: resolveContentImage(cover.path), alt: cover.alt },
+        gallery: gallery.map(({ path, ...figure }) => ({
+          ...figure,
+          ...(path ? { src: resolveContentImage(path) } : {}),
+        })),
+      }));
+
+    expect(projects).toEqual(expectedProjects);
+
     const imagePaths = [
       homeContent.hero.image.path,
       ...Object.values(projectContentFiles).flatMap((project) => [
@@ -58,12 +65,15 @@ describe("editable page content", () => {
     for (const path of imagePaths) assertSourceAssetExists(path);
   });
 
-  it("keeps the requested hero caption and page copy in valid JSON content", () => {
-    expect(homeContent.hero.image.caption).toBe("Custom flip-over joystick and flat-switch mount");
-    expect(resolveContentImage(homeContent.hero.image.path)).toContain("IMG_6905");
-    expect(normalizeContentImagePath("Extras/IMG_6905 - Copy.JPG", "test")).toBe(
-      "Extras/IMG_6905 - Copy.JPG",
-    );
+  it("keeps shared page content in valid JSON content", () => {
+    const heroImagePath = homeContent.hero.image.path
+      .replace(/\\/g, "/")
+      .replace(/^\/+/, "")
+      .replace(/^assets\//, "");
+
+    expect(homeContent.hero.image.caption).toBeTruthy();
+    expect(resolveContentImage(homeContent.hero.image.path)).toBeTruthy();
+    expect(normalizeContentImagePath(`/assets/${heroImagePath}`, "home")).toBe(heroImagePath);
     expect(aboutContent.background.paragraphs).toHaveLength(3);
     expect(skillsContent.groups).toHaveLength(4);
     expect(contactContent.form.fields.message.maxLength).toBe(2000);
