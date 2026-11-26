@@ -3,6 +3,8 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { Figure } from "@/components/site/Figure";
+import { HumanStory } from "@/components/site/HumanStory";
+import { ProcessFlow } from "@/components/site/ProcessFlow";
 import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
 import projectsContent from "@/content/projects-page.json";
@@ -132,6 +134,11 @@ function ProjectPage() {
           </dl>
 
           <div className="mt-12">
+            <HumanStory
+              number={projectsContent.detail.sections.humanStory.number}
+              title={projectsContent.detail.sections.humanStory.title}
+              story={project.humanStory}
+            />
             <Block
               n={projectsContent.detail.sections.problem.number}
               title={projectsContent.detail.sections.problem.title}
@@ -157,32 +164,12 @@ function ProjectPage() {
             >
               <p>{project.approach}</p>
             </Block>
-            <Block
-              n={projectsContent.detail.sections.process.number}
+            <ProcessFlow
+              number={projectsContent.detail.sections.process.number}
               title={projectsContent.detail.sections.process.title}
-            >
-              <ol className="space-y-6">
-                {project.process.map((s, i) => (
-                  <li key={s.title} className="grid grid-cols-[2rem_1fr] gap-2">
-                    <span className="font-mono text-sm text-accent">
-                      {String.fromCharCode(97 + i)}.
-                    </span>
-                    <div>
-                      <h3 className="font-sans text-base font-semibold text-foreground">
-                        {s.title}
-                      </h3>
-                      <p className="mt-1">{s.body}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </Block>
-            <Block
-              n={projectsContent.detail.sections.fabrication.number}
-              title={projectsContent.detail.sections.fabrication.title}
-            >
-              <p>{project.fabrication}</p>
-            </Block>
+              nodes={project.processFlow}
+              projectTitle={project.title}
+            />
             <Block
               n={projectsContent.detail.sections.outcome.number}
               title={projectsContent.detail.sections.outcome.title}

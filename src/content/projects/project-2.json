@@ -15,10 +15,10 @@
     "problem": "Problem definition paragraph.",
     "requirements": "User and engineering requirements, listed in display order.",
     "approach": "Engineering approach summary.",
-    "process": "Design-process steps, each with a heading and description.",
-    "fabrication": "How the design was manufactured or assembled.",
+    "humanStory": "The human story shown before the numbered engineering sections; abstract stays visible and detail expands on request.",
+    "processFlow": "Ordered design and fabrication nodes. IDs are generated automatically from titles. Use a title, generated ID, or 1-based position to reference destinations; omitted step next follows the next node.",
     "outcome": "Project result and impact.",
-    "gallery": "Add, remove, or reorder figure objects here. Each figure has an editable number, image path, alt description, caption, and kind."
+    "gallery": "Add, remove, or reorder figure objects here. Each figure has an editable number, image path, alt description, caption, contextual back text, and kind."
   },
   "order": 2,
   "slug": "adaptive-grip-system",
@@ -47,21 +47,41 @@
     "Allow a therapist to adjust fit without CAD experience"
   ],
   "approach": "I built a parametric Fusion 360 model driven by five hand measurements, so a therapist enters values and exports a printable file. Soft TPU zones were added where users reported pressure points.",
-  "process": [
+  "humanStory": {
+    "abstract": "When an everyday grip does not fit, a simple task like holding a utensil or pen can take extra effort and make existing aids hard to use.",
+    "detail": "Therapists often have to adapt off-the-shelf grips by hand, but each person holds tools differently. The project makes that fitting process more personal: a small set of measurements shapes a grip around the user's hand and the task they want to do."
+  },
+  "processFlow": [
     {
+      "type": "step",
       "title": "Observation",
       "body": "Shadowed therapy sessions to record grip types and failure points of existing aids."
     },
     {
+      "type": "step",
       "title": "Parametric modelling",
       "body": "Created a configurable model with user-parameter tables for diameter, angle and strap position."
     },
     {
+      "type": "step",
       "title": "Rapid iteration",
       "body": "Printed and tested 11 iterations with six users, refining wall thickness and strap geometry."
+    },
+    {
+      "type": "decision",
+      "title": "Does the grip fit the task?",
+      "body": "",
+      "branches": [
+        { "label": "Yes", "destination": "Fabrication" },
+        { "label": "No — refine", "destination": "Parametric modelling" }
+      ]
+    },
+    {
+      "type": "step",
+      "title": "Fabrication",
+      "body": "Printed on FDM machines in PLA for rigid cores and TPU 95A for contact surfaces, using a two-material print with a mechanical interlock instead of adhesive."
     }
   ],
-  "fabrication": "Printed on FDM machines in PLA for rigid cores and TPU 95A for contact surfaces, using a two-material print with a mechanical interlock instead of adhesive.",
   "outcome": "The therapy team now prints personalised grips in-house. Average fitting time dropped from a full session to under 20 minutes.",
   "gallery": [
     {
@@ -69,18 +89,21 @@
       "path": "project-adaptive-grip.jpg",
       "alt": "Prototype grips laid out on a cutting mat",
       "caption": "Prototype family, iterations 4–9",
+      "backText": "Eleven printed iterations were tested with six users to tune fit, wall thickness and strap geometry.",
       "kind": "photo"
     },
     {
       "figure": "02",
       "alt": "Parametric CAD model placeholder",
       "caption": "Parametric model with user-parameter table",
+      "backText": "Five hand measurements drive the configurable model so a therapist can prepare a personalized file.",
       "kind": "cad"
     },
     {
       "figure": "03",
       "alt": "Hand sketch placeholder",
       "caption": "Early grip-pattern sketches",
+      "backText": "Early sketches capture different ways a user might hold utensils, pens and everyday tools.",
       "kind": "drawing"
     }
   ]

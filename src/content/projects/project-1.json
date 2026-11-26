@@ -15,10 +15,10 @@
     "problem": "Problem definition paragraph.",
     "requirements": "User and engineering requirements, listed in display order.",
     "approach": "Engineering approach summary.",
-    "process": "Design-process steps, each with a heading and description.",
-    "fabrication": "How the design was manufactured or assembled.",
+    "humanStory": "The human story shown before the numbered engineering sections; abstract stays visible and detail expands on request.",
+    "processFlow": "Ordered design and fabrication nodes. IDs are generated automatically from titles. Use a title, generated ID, or 1-based position to reference destinations; omitted step next follows the next node.",
     "outcome": "Project result and impact.",
-    "gallery": "Add, remove, or reorder figure objects here. Each figure has an editable number, image path, alt description, caption, and kind."
+    "gallery": "Add, remove, or reorder figure objects here. Each figure has an editable number, image path, alt description, caption, contextual back text, and kind."
   },
   "order": 1,
   "slug": "pediatric-gait-trainer-tray",
@@ -48,21 +48,32 @@
     "Cover as much area as possible while staying within the gait trainer's footprint"
   ],
   "approach": "",
-  "process": [
+  "humanStory": {
+    "abstract": "A pediatric gait trainer needed a tray that let a child keep a clear view of their surroundings while keeping therapy objects close at hand.",
+    "detail": "The tray had to support the rhythm of a therapy session without becoming an obstacle: transparent material keeps the view open, soft edges help keep objects on the surface, and a tool-free mount makes it quick to take the tray on or off."
+  },
+  "processFlow": [
     {
+      "type": "step",
       "title": "Concept & user mapping",
-      "body": ""
+      "body": "Translate the clinic's need for a clear view, safer edges, quick removal and a tray that stays within the gait trainer's footprint into design constraints."
     },
     {
+      "type": "step",
       "title": "Detailed design",
-      "body": ""
+      "body": "Develop the transparent tray and tool-free attachment around the trainer's footprint, keeping the surface level and the edges soft."
     },
     {
+      "type": "step",
       "title": "Analysis",
-      "body": ""
+      "body": "Check the design against the practical requirements: a level tray, retained objects, a clear view and installation without tools."
+    },
+    {
+      "type": "step",
+      "title": "Fabrication & fit",
+      "body": "Bring together the transparent tray, soft silicone edging and removable mount to create a lightweight adaptation for the gait trainer."
     }
   ],
-  "fabrication": "",
   "outcome": "",
   "gallery": [
     {
@@ -70,6 +81,7 @@
       "path": "project-wheelchair-tray.jpg",
       "alt": "Finished tray mount installed on wheelchair",
       "caption": "Final assembly on a test chair",
+      "backText": "A transparent surface keeps objects within reach while preserving the child's view through the tray.",
       "kind": "photo"
     },
     {
@@ -77,18 +89,21 @@
       "path": "hero-workshop.jpg",
       "alt": "Machined aluminium clamp brackets on workbench",
       "caption": "Machined clamp brackets before anodising",
+      "backText": "The tool-free attachment is designed to make the tray quick to install and remove during clinic use.",
       "kind": "photo"
     },
     {
       "figure": "03",
       "alt": "CAD assembly placeholder",
       "caption": "SolidWorks assembly — exploded view",
+      "backText": "The assembly drawing will show how the tray, soft edge and attachment fit together.",
       "kind": "cad"
     },
     {
       "figure": "04",
       "alt": "FEA result placeholder",
       "caption": "Von Mises stress plot at 2× rated load",
+      "backText": "The analysis image will document how the tray responds under the selected test load.",
       "kind": "test"
     }
   ]

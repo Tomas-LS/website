@@ -8,7 +8,7 @@ import homeContent from "./home.json";
 import projectsPageContent from "./projects-page.json";
 import skillsContent from "./skills-tools.json";
 import { projectSlugs } from "./project-slugs";
-import { projects } from "./projects";
+import { prepareProcessNodes, projects } from "./projects";
 import { resolveContentImage } from "./image-paths";
 import { normalizeContentImagePath } from "../../vite-content-images";
 import type { Project } from "./projects";
@@ -44,8 +44,9 @@ describe("editable page content", () => {
   it("preserves project data, configured order, and optional gallery images", () => {
     const expectedProjects = Object.values(projectContentFiles)
       .sort((a, b) => a.order - b.order)
-      .map(({ cover, gallery, ...project }) => ({
+      .map(({ cover, gallery, processFlow, ...project }) => ({
         ...project,
+        processFlow: prepareProcessNodes(processFlow, project.title),
         cover: { src: resolveContentImage(cover.path), alt: cover.alt },
         gallery: gallery.map(({ path, ...figure }) => ({
           ...figure,
@@ -78,5 +79,8 @@ describe("editable page content", () => {
     expect(skillsContent.groups).toHaveLength(4);
     expect(contactContent.form.fields.message.maxLength).toBe(2000);
     expect(projectsPageContent.detail.sections.gallery.title).toBe("Gallery, CAD & drawings");
+    expect(projectsPageContent.detail.sections.process.number).toBe("04");
+    expect(projectsPageContent.detail.sections.outcome.number).toBe("05");
+    expect(projectsPageContent.detail.sections.gallery.number).toBe("06");
   });
 });

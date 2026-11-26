@@ -6,8 +6,13 @@
     "listing": "Heading and intro shown above all project cards.",
     "card.readCaseStudy": "Accessible link text on each project card.",
     "detail.metadataLabels": "Labels for the role, duration, context, and tools displayed near each project title.",
-    "detail.sections": "Shared project detail section numbers and headings.",
-    "detail.figureKinds": "Placeholder labels for gallery items without an image path."
+    "detail.sections": "Shared project detail section numbers and headings; 04 labels the combined design and fabrication flow.",
+    "detail.humanStory": "Heading and number for the expandable human story that opens each project case study.",
+    "detail.figureKinds": "Placeholder labels for gallery items without an image path.",
+    "detail.interactionLabels": "Shared visible cues and accessible-label templates for project-page interactions.",
+    "detail.interactionLabels.process": "Process-node actions and accessible labels; templates use projectTitle, title, number, source, destination, and label.",
+    "detail.interactionLabels.humanStory": "Human Story disclosure cues and accessible-label templates; templates use title.",
+    "detail.interactionLabels.gallery": "Gallery flip cues and accessible-label templates; templates use figurePrefix, figure, caption, and alt."
   },
   "meta": {
     "title": "Projects — {name}",
@@ -35,13 +40,13 @@
       "tools": "Tools"
     },
     "sections": {
+      "humanStory": { "number": "00", "title": "The Human Story" },
       "problem": { "number": "01", "title": "Problem definition" },
       "requirements": { "number": "02", "title": "User requirements" },
       "approach": { "number": "03", "title": "Engineering approach" },
-      "process": { "number": "04", "title": "Design process" },
-      "fabrication": { "number": "05", "title": "Fabrication" },
-      "outcome": { "number": "06", "title": "Final outcome" },
-      "gallery": { "number": "07", "title": "Gallery, CAD & drawings" }
+      "process": { "number": "04", "title": "Design and fabrication process" },
+      "outcome": { "number": "05", "title": "Final outcome" },
+      "gallery": { "number": "06", "title": "Gallery, CAD & drawings" }
     },
     "figurePrefix": "Fig.",
     "figureKinds": {
@@ -49,6 +54,40 @@
       "cad": "CAD",
       "drawing": "Drawing",
       "test": "Testing"
+    },
+    "interactionLabels": {
+      "process": {
+        "sectionAccessibleLabel": "Design and fabrication process for {projectTitle}",
+        "decision": "Decision",
+        "decisionAccessibleLabel": "Decision: {title}",
+        "decisionBranchesAccessibleLabel": "Decision branches",
+        "branchDestinationTemplate": "{label} — continue to {destination}",
+        "stepCaret": {
+          "enabled": true,
+          "boxSize": 28,
+          "caretSize": 18,
+          "caretStrokeWidth": 2.25,
+          "borderRadius": 6
+        },
+        "stepExpandAccessibleLabel": "Expand step {number}: {title}",
+        "stepCollapseAccessibleLabel": "Collapse step {number}: {title}",
+        "connectionAccessibleLabelTemplate": "{source} to {destination}",
+        "branchConnectionAccessibleLabelTemplate": "{label}: {source} to {destination}"
+      },
+      "humanStory": {
+        "readMore": "Read more",
+        "readLess": "Read less",
+        "readMoreAccessibleLabel": "Read more about {title}",
+        "readLessAccessibleLabel": "Read less about {title}"
+      },
+      "gallery": {
+        "flipForDetails": "Flip for details",
+        "tapForDetails": "Tap for details",
+        "flipBack": "Flip back",
+        "tapToReturn": "Tap to return",
+        "showDetailsAccessibleLabelTemplate": "Show details for {figurePrefix} {figure}: {caption}. {alt}",
+        "showImageAccessibleLabelTemplate": "Show image for {figurePrefix} {figure}: {caption}"
+      }
     },
     "placeholderSuffix": "coming soon",
     "nextProject": "Next project"

@@ -15,10 +15,10 @@
     "problem": "Problem definition paragraph.",
     "requirements": "User and engineering requirements, listed in display order.",
     "approach": "Engineering approach summary.",
-    "process": "Design-process steps, each with a heading and description.",
-    "fabrication": "How the design was manufactured or assembled.",
+    "humanStory": "The human story shown before the numbered engineering sections; abstract stays visible and detail expands on request.",
+    "processFlow": "Ordered design and fabrication nodes. IDs are generated automatically from titles. Use a title, generated ID, or 1-based position to reference destinations; omitted step next follows the next node.",
     "outcome": "Project result and impact.",
-    "gallery": "Add, remove, or reorder figure objects here. Each figure has an editable number, image path, alt description, caption, and kind."
+    "gallery": "Add, remove, or reorder figure objects here. Each figure has an editable number, image path, alt description, caption, contextual back text, and kind."
   },
   "order": 3,
   "slug": "portable-folding-ramp",
@@ -47,21 +47,41 @@
     "Fold to fit behind a shop counter"
   ],
   "approach": "I sized extruded side rails using beam theory, then verified with FEA. A continuous hinge and interlocking channel let the two halves self-align when unfolded.",
-  "process": [
+  "humanStory": {
+    "abstract": "A single entrance step can keep a wheelchair user from entering a small shop, even when the people inside are ready to help.",
+    "detail": "Permanent access work is not always possible in a compact, older building. A ramp that staff can carry and deploy offers another option, but only if it is light enough to handle, stable under a powered chair and small enough to store behind the counter."
+  },
+  "processFlow": [
     {
+      "type": "step",
       "title": "Load case definition",
       "body": "Defined worst-case loads from powered-chair data including dynamic factors for wheel impact."
     },
     {
+      "type": "step",
       "title": "Section optimisation",
       "body": "Compared four rail profiles for stiffness-to-mass and selected a ribbed channel."
     },
     {
+      "type": "step",
       "title": "Field testing",
       "body": "Deployed the prototype at three local businesses and collected feedback from users and staff."
+    },
+    {
+      "type": "decision",
+      "title": "Does the ramp meet the load and access requirements?",
+      "body": "Review proof-load performance and field feedback before preparing the final build.",
+      "branches": [
+        { "label": "Yes", "destination": "Fabrication" },
+        { "label": "No — revise", "destination": "Section optimisation" }
+      ]
+    },
+    {
+      "type": "step",
+      "title": "Fabrication",
+      "body": "Rails were cut from extruded 6063 aluminium and TIG-welded to a 2 mm deck; a grit-based anti-slip coating was applied and tested with a pendulum friction tester."
     }
   ],
-  "fabrication": "Rails were cut from extruded 6063 aluminium and TIG-welded to a 2 mm deck; a grit-based anti-slip coating was applied and tested with a pendulum friction tester.",
   "outcome": "The prototype passed a 300 kg proof load with no permanent deformation. The association is using the drawings to source a small production batch.",
   "gallery": [
     {
@@ -69,18 +89,21 @@
       "path": "project-folding-ramp.jpg",
       "alt": "Ramp deployed at a building entrance",
       "caption": "Field test at a local business",
+      "backText": "The prototype was deployed at three local businesses to gather feedback from wheelchair users and staff.",
       "kind": "photo"
     },
     {
       "figure": "02",
       "alt": "Ramp CAD drawing placeholder",
       "caption": "General arrangement drawing",
+      "backText": "The drawing will show the two ramp sections, hinge and folded storage envelope.",
       "kind": "cad"
     },
     {
       "figure": "03",
       "alt": "Load test placeholder",
       "caption": "Proof-load test set-up",
+      "backText": "The prototype passed a 300 kg proof load without permanent deformation.",
       "kind": "test"
     }
   ]
